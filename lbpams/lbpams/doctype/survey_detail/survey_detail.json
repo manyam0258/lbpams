@@ -1,0 +1,83 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-04-02 10:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "survey_number",
+  "subdivision_number",
+  "extent_acres",
+  "extent_guntas",
+  "classification",
+  "patta_number",
+  "revenue_sketch_available"
+ ],
+ "fields": [
+  {
+   "fieldname": "survey_number",
+   "fieldtype": "Data",
+   "label": "Survey Number",
+   "reqd": 1,
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "subdivision_number",
+   "fieldtype": "Data",
+   "label": "Subdivision Number",
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "extent_acres",
+   "fieldtype": "Float",
+   "label": "Extent (Acres)",
+   "in_list_view": 1,
+   "columns": 1,
+   "precision": 4
+  },
+  {
+   "fieldname": "extent_guntas",
+   "fieldtype": "Float",
+   "label": "Extent (Guntas)",
+   "in_list_view": 1,
+   "columns": 1,
+   "precision": 2
+  },
+  {
+   "fieldname": "classification",
+   "fieldtype": "Select",
+   "label": "Classification",
+   "options": "\nAgricultural\nNon-Agricultural\nWaste Land",
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "patta_number",
+   "fieldtype": "Data",
+   "label": "Patta Number"
+  },
+  {
+   "fieldname": "revenue_sketch_available",
+   "fieldtype": "Check",
+   "label": "Revenue Sketch Available",
+   "in_list_view": 1,
+   "columns": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-02 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "LBPAMS",
+ "name": "Survey Detail",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "istable": 1,
+ "editable_grid": 1,
+ "description": "Individual survey number details for a land parcel"
+}

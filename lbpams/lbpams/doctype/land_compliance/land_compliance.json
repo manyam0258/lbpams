@@ -1,0 +1,254 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-04-02 10:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "sb_regulatory",
+  "zoning_type",
+  "master_plan_road_affected",
+  "road_width_metres",
+  "cb_reg_1",
+  "permissible_far",
+  "permissible_ground_coverage",
+  "sb_buffer",
+  "water_body_nearby",
+  "water_body_distance_metres",
+  "lake_buffer_zone_ftl",
+  "fsl_level",
+  "nala_nearby",
+  "nala_width_classification",
+  "cb_buffer_1",
+  "railway_buffer",
+  "railway_distance_metres",
+  "ht_line_buffer",
+  "ht_line_distance_metres",
+  "gas_pipeline_buffer",
+  "defense_zone",
+  "airport_funnel_zone",
+  "airport_distance_km",
+  "sb_hyderabad",
+  "go_111_area",
+  "hmda_green_zone",
+  "cb_hyd_1",
+  "ghmc_limits",
+  "hmda_jurisdiction",
+  "sb_eligibility",
+  "development_eligible",
+  "cb_elig_1",
+  "eligibility_remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "sb_regulatory",
+   "fieldtype": "Section Break",
+   "label": "Regulatory Zoning"
+  },
+  {
+   "fieldname": "zoning_type",
+   "fieldtype": "Select",
+   "label": "Zoning Type",
+   "options": "\nResidential\nCommercial\nMixed Use\nIndustrial\nGreen Zone\nNo Development Zone\nSpecial Development Zone",
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "master_plan_road_affected",
+   "fieldtype": "Check",
+   "label": "Master Plan Road Affected"
+  },
+  {
+   "fieldname": "road_width_metres",
+   "fieldtype": "Float",
+   "label": "Road Width (Metres)",
+   "precision": 2
+  },
+  {
+   "fieldname": "cb_reg_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "permissible_far",
+   "fieldtype": "Float",
+   "label": "Permissible FAR",
+   "precision": 2
+  },
+  {
+   "fieldname": "permissible_ground_coverage",
+   "fieldtype": "Float",
+   "label": "Permissible Ground Coverage (%)",
+   "precision": 2
+  },
+  {
+   "fieldname": "sb_buffer",
+   "fieldtype": "Section Break",
+   "label": "Physical & Buffer Zone Constraints"
+  },
+  {
+   "fieldname": "water_body_nearby",
+   "fieldtype": "Check",
+   "label": "Water Body Nearby"
+  },
+  {
+   "fieldname": "water_body_distance_metres",
+   "fieldtype": "Float",
+   "label": "Water Body Distance (Metres)",
+   "depends_on": "water_body_nearby",
+   "precision": 2
+  },
+  {
+   "fieldname": "lake_buffer_zone_ftl",
+   "fieldtype": "Check",
+   "label": "Lake Buffer Zone (FTL)",
+   "description": "Full Tank Level buffer \u2014 no construction within FTL boundary"
+  },
+  {
+   "fieldname": "fsl_level",
+   "fieldtype": "Float",
+   "label": "FSL Level",
+   "description": "Full Supply Level \u2014 relevant for HMDA GO 111 areas",
+   "precision": 2
+  },
+  {
+   "fieldname": "nala_nearby",
+   "fieldtype": "Check",
+   "label": "Nala Nearby",
+   "description": "Stormwater drain \u2014 setback rules apply"
+  },
+  {
+   "fieldname": "nala_width_classification",
+   "fieldtype": "Select",
+   "label": "Nala Width Classification",
+   "options": "\nMinor\nMajor\nMaster Nala",
+   "depends_on": "nala_nearby"
+  },
+  {
+   "fieldname": "cb_buffer_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "railway_buffer",
+   "fieldtype": "Check",
+   "label": "Railway Buffer"
+  },
+  {
+   "fieldname": "railway_distance_metres",
+   "fieldtype": "Float",
+   "label": "Railway Distance (Metres)",
+   "depends_on": "railway_buffer",
+   "precision": 2
+  },
+  {
+   "fieldname": "ht_line_buffer",
+   "fieldtype": "Check",
+   "label": "High Tension Line Buffer"
+  },
+  {
+   "fieldname": "ht_line_distance_metres",
+   "fieldtype": "Float",
+   "label": "HT Line Distance (Metres)",
+   "depends_on": "ht_line_buffer",
+   "precision": 2,
+   "description": "CEA rules: 3m\u201315m clearance depending on voltage"
+  },
+  {
+   "fieldname": "gas_pipeline_buffer",
+   "fieldtype": "Check",
+   "label": "Gas Pipeline Buffer",
+   "description": "PNGRB regulations apply"
+  },
+  {
+   "fieldname": "defense_zone",
+   "fieldtype": "Check",
+   "label": "Defense Zone",
+   "description": "Ministry of Defence no-construction zone"
+  },
+  {
+   "fieldname": "airport_funnel_zone",
+   "fieldtype": "Check",
+   "label": "Airport Funnel Zone",
+   "description": "DGCA / AAI height restrictions"
+  },
+  {
+   "fieldname": "airport_distance_km",
+   "fieldtype": "Float",
+   "label": "Airport Distance (Km)",
+   "depends_on": "airport_funnel_zone",
+   "precision": 2
+  },
+  {
+   "fieldname": "sb_hyderabad",
+   "fieldtype": "Section Break",
+   "label": "Hyderabad-Specific Restrictions"
+  },
+  {
+   "fieldname": "go_111_area",
+   "fieldtype": "Check",
+   "label": "GO 111 Area",
+   "description": "Catchment areas of Osman Sagar & Himayat Sagar; development strictly prohibited"
+  },
+  {
+   "fieldname": "hmda_green_zone",
+   "fieldtype": "Check",
+   "label": "HMDA Green Zone",
+   "description": "No construction; only afforestation permitted"
+  },
+  {
+   "fieldname": "cb_hyd_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ghmc_limits",
+   "fieldtype": "Check",
+   "label": "GHMC Limits",
+   "description": "Determines which approval authority governs the project"
+  },
+  {
+   "fieldname": "hmda_jurisdiction",
+   "fieldtype": "Check",
+   "label": "HMDA Jurisdiction",
+   "description": "Outside GHMC but within HMDA metropolitan development area"
+  },
+  {
+   "fieldname": "sb_eligibility",
+   "fieldtype": "Section Break",
+   "label": "Development Eligibility"
+  },
+  {
+   "fieldname": "development_eligible",
+   "fieldtype": "Select",
+   "label": "Development Eligible",
+   "options": "\nYes\nNo\nConditional",
+   "read_only": 1,
+   "in_list_view": 1,
+   "columns": 2,
+   "description": "Auto-computed based on compliance parameters"
+  },
+  {
+   "fieldname": "cb_elig_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "eligibility_remarks",
+   "fieldtype": "Small Text",
+   "label": "Eligibility Remarks",
+   "read_only": 1,
+   "description": "Auto-populated with reason for Conditional or No status"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-02 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "LBPAMS",
+ "name": "Land Compliance",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "istable": 1,
+ "editable_grid": 1,
+ "description": "Regulatory and physical compliance constraints for a land parcel"
+}

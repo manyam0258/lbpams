@@ -1,0 +1,82 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-04-02 10:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "mandal",
+  "district",
+  "authority",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "mandal",
+   "fieldtype": "Link",
+   "label": "Mandal",
+   "reqd": 1,
+   "unique": 1,
+   "options": "Mandal Master",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "district",
+   "fieldtype": "Link",
+   "label": "District",
+   "options": "District Master",
+   "read_only": 1,
+   "fetch_from": "mandal.district",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "authority",
+   "fieldtype": "Select",
+   "label": "Approval Authority",
+   "reqd": 1,
+   "options": "\nGHMC\nHMDA\nDTCP",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-02 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "LBPAMS",
+ "name": "Authority Mapping",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "create": 1,
+   "write": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print_": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "Management",
+   "read": 1,
+   "create": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "autoname": "field:mandal",
+ "track_changes": 1,
+ "description": "Maps each mandal to its governing approval authority (GHMC/HMDA/DTCP)",
+ "search_fields": "mandal, authority"
+}

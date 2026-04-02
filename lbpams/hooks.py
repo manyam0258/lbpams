@@ -8,7 +8,22 @@ app_license = "gpl-3.0"
 # Apps
 # ------------------
 
-# required_apps = []
+required_apps = ["erpnext"]
+
+# Fixtures — export custom roles and other config
+fixtures = [
+    {
+        "dt": "Role",
+        "filters": [["name", "in", [
+            "Land Manager",
+            "Legal Team",
+            "Survey Team",
+            "Project Manager",
+            "Approval Liaison Officer",
+            "Management"
+        ]]]
+    }
+]
 
 # Each item in the list will be shown as an app in the apps page
 # add_to_apps_screen = [

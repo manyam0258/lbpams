@@ -1,0 +1,125 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-04-02 10:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "document_type",
+  "document_number",
+  "document_date",
+  "period_from",
+  "period_to",
+  "issued_by",
+  "file_attachment",
+  "sb_ocr",
+  "ocr_status",
+  "ocr_extracted_data",
+  "cb_ocr_1",
+  "verified_by",
+  "verification_date"
+ ],
+ "fields": [
+  {
+   "fieldname": "document_type",
+   "fieldtype": "Select",
+   "label": "Document Type",
+   "reqd": 1,
+   "in_list_view": 1,
+   "columns": 2,
+   "options": "\nEC\nSale Deed\nLink Document\nGift Deed\nPartition Deed\nPahani\nAdangal\n1-B Register\nFMB Sketch\nTippan\nRevenue Sketch\nCourt Order\nPower of Attorney\nOther"
+  },
+  {
+   "fieldname": "document_number",
+   "fieldtype": "Data",
+   "label": "Document Number",
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "document_date",
+   "fieldtype": "Date",
+   "label": "Document Date",
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "period_from",
+   "fieldtype": "Date",
+   "label": "Period From",
+   "description": "For EC: start of encumbrance period"
+  },
+  {
+   "fieldname": "period_to",
+   "fieldtype": "Date",
+   "label": "Period To",
+   "description": "For EC: end of encumbrance period"
+  },
+  {
+   "fieldname": "issued_by",
+   "fieldtype": "Data",
+   "label": "Issued By",
+   "description": "Authority that issued the document"
+  },
+  {
+   "fieldname": "file_attachment",
+   "fieldtype": "Attach",
+   "label": "File Attachment",
+   "description": "Upload the scanned document"
+  },
+  {
+   "fieldname": "sb_ocr",
+   "fieldtype": "Section Break",
+   "label": "OCR Processing"
+  },
+  {
+   "fieldname": "ocr_status",
+   "fieldtype": "Select",
+   "label": "OCR Status",
+   "options": "\nNot Processed\nProcessing\nExtracted\nVerified",
+   "default": "Not Processed",
+   "in_list_view": 1,
+   "columns": 1,
+   "description": "Set to Verified after manual review"
+  },
+  {
+   "fieldname": "ocr_extracted_data",
+   "fieldtype": "Text",
+   "label": "OCR Extracted Data",
+   "read_only": 1,
+   "description": "JSON data extracted by OCR engine"
+  },
+  {
+   "fieldname": "cb_ocr_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "verified_by",
+   "fieldtype": "Link",
+   "label": "Verified By",
+   "options": "User",
+   "description": "Set by legal team after review"
+  },
+  {
+   "fieldname": "verification_date",
+   "fieldtype": "Date",
+   "label": "Verification Date",
+   "read_only": 1,
+   "description": "Auto-set when Verified By is saved"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-02 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "LBPAMS",
+ "name": "Encumbrance Document",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "istable": 1,
+ "editable_grid": 1,
+ "description": "Document records for land parcels including EC, Sale Deed, Pahani etc."
+}

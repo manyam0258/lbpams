@@ -1,0 +1,331 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-04-02 10:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "details_tab",
+  "sb_basic_identity",
+  "naming_series",
+  "land_name",
+  "total_extent_acres",
+  "total_extent_guntas",
+  "total_extent_display",
+  "cb_basic_1",
+  "facing",
+  "land_nature",
+  "current_status",
+  "risk_flag",
+  "sb_location",
+  "village",
+  "mandal",
+  "district",
+  "state",
+  "cb_location_1",
+  "pin_code",
+  "latitude",
+  "longitude",
+  "google_map_link",
+  "sb_map",
+  "location",
+  "survey_tab",
+  "survey_details",
+  "compliance_tab",
+  "land_compliance",
+  "documents_tab",
+  "encumbrance_documents",
+  "notes_tab",
+  "internal_notes",
+  "sb_amended",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Details"
+  },
+  {
+   "fieldname": "sb_basic_identity",
+   "fieldtype": "Section Break",
+   "label": "Basic Identity"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "LAND-.YYYY.-.####",
+   "reqd": 1,
+   "default": "LAND-.YYYY.-.####",
+   "set_only_once": 1,
+   "no_copy": 1
+  },
+  {
+   "fieldname": "land_name",
+   "fieldtype": "Data",
+   "label": "Land Name",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "total_extent_acres",
+   "fieldtype": "Float",
+   "label": "Total Extent (Acres)",
+   "reqd": 1,
+   "precision": 4,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "total_extent_guntas",
+   "fieldtype": "Float",
+   "label": "Total Extent (Guntas)",
+   "precision": 2
+  },
+  {
+   "fieldname": "total_extent_display",
+   "fieldtype": "Data",
+   "label": "Total Extent",
+   "read_only": 1,
+   "description": "Combined display of acres and guntas"
+  },
+  {
+   "fieldname": "cb_basic_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "facing",
+   "fieldtype": "Select",
+   "label": "Facing",
+   "options": "\nNorth\nEast\nWest\nSouth\nNorth-East\nNorth-West\nSouth-East\nSouth-West"
+  },
+  {
+   "fieldname": "land_nature",
+   "fieldtype": "Select",
+   "label": "Land Nature",
+   "reqd": 1,
+   "in_standard_filter": 1,
+   "options": "\nPatta\nAssigned Land\nGovernment Land\nCeiling Land\nInam Land\nForest Land\nWakf Land"
+  },
+  {
+   "fieldname": "current_status",
+   "fieldtype": "Select",
+   "label": "Current Status",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "default": "Available",
+   "options": "Available\nUnder Litigation\nAcquired\nUnder Approval\nApproved for Development"
+  },
+  {
+   "fieldname": "risk_flag",
+   "fieldtype": "Check",
+   "label": "Risk Flag",
+   "read_only": 1,
+   "in_list_view": 1,
+   "description": "Auto-set when litigation or missing critical documents are detected"
+  },
+  {
+   "fieldname": "sb_location",
+   "fieldtype": "Section Break",
+   "label": "Location"
+  },
+  {
+   "fieldname": "village",
+   "fieldtype": "Data",
+   "label": "Village"
+  },
+  {
+   "fieldname": "mandal",
+   "fieldtype": "Link",
+   "label": "Mandal",
+   "reqd": 1,
+   "options": "Mandal Master",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "district",
+   "fieldtype": "Link",
+   "label": "District",
+   "options": "District Master",
+   "read_only": 1,
+   "fetch_from": "mandal.district",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "label": "State",
+   "default": "Telangana",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_location_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "pin_code",
+   "fieldtype": "Data",
+   "label": "Pin Code"
+  },
+  {
+   "fieldname": "latitude",
+   "fieldtype": "Float",
+   "label": "Latitude",
+   "precision": 8
+  },
+  {
+   "fieldname": "longitude",
+   "fieldtype": "Float",
+   "label": "Longitude",
+   "precision": 8
+  },
+  {
+   "fieldname": "google_map_link",
+   "fieldtype": "Data",
+   "label": "Map Link",
+   "read_only": 1,
+   "description": "Auto-generated from coordinates"
+  },
+  {
+   "fieldname": "sb_map",
+   "fieldtype": "Section Break",
+   "label": "Map Preview",
+   "collapsible": 1
+  },
+  {
+   "fieldname": "location",
+   "fieldtype": "Geolocation",
+   "label": "Location on Map",
+   "description": "Use Frappe's built-in Geolocation field for map display"
+  },
+  {
+   "fieldname": "survey_tab",
+   "fieldtype": "Tab Break",
+   "label": "Survey Details"
+  },
+  {
+   "fieldname": "survey_details",
+   "fieldtype": "Table",
+   "label": "Survey Details",
+   "options": "Survey Detail"
+  },
+  {
+   "fieldname": "compliance_tab",
+   "fieldtype": "Tab Break",
+   "label": "Compliance"
+  },
+  {
+   "fieldname": "land_compliance",
+   "fieldtype": "Table",
+   "label": "Land Compliance",
+   "options": "Land Compliance"
+  },
+  {
+   "fieldname": "documents_tab",
+   "fieldtype": "Tab Break",
+   "label": "Documents"
+  },
+  {
+   "fieldname": "encumbrance_documents",
+   "fieldtype": "Table",
+   "label": "Encumbrance & Documents",
+   "options": "Encumbrance Document"
+  },
+  {
+   "fieldname": "notes_tab",
+   "fieldtype": "Tab Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "internal_notes",
+   "fieldtype": "Text Editor",
+   "label": "Internal Notes",
+   "description": "Legal team remarks, notes, and communication history"
+  },
+  {
+   "fieldname": "sb_amended",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "options": "Land Master",
+   "read_only": 1,
+   "no_copy": 1,
+   "print_hide": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-02 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "LBPAMS",
+ "name": "Land Master",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "create": 1,
+   "write": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "email": 1,
+   "export": 1,
+   "print_": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "Land Manager",
+   "read": 1,
+   "create": 1,
+   "write": 1
+  },
+  {
+   "role": "Legal Team",
+   "read": 1,
+   "write": 1,
+   "submit": 1
+  },
+  {
+   "role": "Survey Team",
+   "read": 1,
+   "write": 1
+  },
+  {
+   "role": "Project Manager",
+   "read": 1
+  },
+  {
+   "role": "Approval Liaison Officer",
+   "read": 1
+  },
+  {
+   "role": "Management",
+   "read": 1,
+   "write": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "autoname": "naming_series:",
+ "is_submittable": 1,
+ "track_changes": 1,
+ "description": "Single source of truth for every land parcel in the organization's bank",
+ "search_fields": "land_name, village, mandal, district, current_status",
+ "title_field": "land_name",
+ "show_title_field_in_link": 1,
+ "image_field": "",
+ "timeline_field": ""
+}
