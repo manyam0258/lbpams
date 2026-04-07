@@ -1,0 +1,166 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-04-07 17:43:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "owner_name",
+  "owner_type",
+  "co_owner_names",
+  "acquisition_mode",
+  "cb_ownership_1",
+  "from_date",
+  "to_date",
+  "chain_status",
+  "sb_registration",
+  "registration_number",
+  "registration_date",
+  "registration_office",
+  "cb_registration_1",
+  "consideration_amount",
+  "stamp_duty_paid",
+  "source_document_idx",
+  "sb_remarks",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "owner_name",
+   "fieldtype": "Data",
+   "label": "Owner Name",
+   "reqd": 1,
+   "in_list_view": 1,
+   "columns": 2,
+   "description": "Full name as per the registered document"
+  },
+  {
+   "fieldname": "owner_type",
+   "fieldtype": "Select",
+   "label": "Owner Type",
+   "options": "\nIndividual\nJoint\nHUF\nCompany\nTrust\nGovernment\nSociety",
+   "default": "Individual",
+   "in_list_view": 1,
+   "columns": 1,
+   "description": "Legal entity type of the owner"
+  },
+  {
+   "fieldname": "co_owner_names",
+   "fieldtype": "Small Text",
+   "label": "Co-Owner Names",
+   "depends_on": "eval:doc.owner_type=='Joint'",
+   "description": "For joint ownership — list all co-owners, one per line"
+  },
+  {
+   "fieldname": "acquisition_mode",
+   "fieldtype": "Select",
+   "label": "Acquisition Mode",
+   "reqd": 1,
+   "in_list_view": 1,
+   "columns": 1,
+   "options": "\nSale\nGift\nInheritance\nPartition\nCourt Decree\nGovernment Allotment\nPower of Attorney\nRelease\nExchange\nAdverse Possession",
+   "description": "How this owner acquired the land"
+  },
+  {
+   "fieldname": "cb_ownership_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "from_date",
+   "fieldtype": "Date",
+   "label": "Ownership From",
+   "reqd": 1,
+   "in_list_view": 1,
+   "columns": 1,
+   "description": "Date of acquisition — usually the registration date of the deed"
+  },
+  {
+   "fieldname": "to_date",
+   "fieldtype": "Date",
+   "label": "Ownership To",
+   "in_list_view": 1,
+   "columns": 1,
+   "description": "Date ownership ended. Leave BLANK for the current owner."
+  },
+  {
+   "fieldname": "chain_status",
+   "fieldtype": "Select",
+   "label": "Chain Status",
+   "options": "\nClear\nGap Before\nOverlap\nDisputed",
+   "read_only": 1,
+   "in_list_view": 1,
+   "columns": 1,
+   "description": "Auto-computed: indicates whether this ownership link has chain issues"
+  },
+  {
+   "fieldname": "sb_registration",
+   "fieldtype": "Section Break",
+   "label": "Registration Details"
+  },
+  {
+   "fieldname": "registration_number",
+   "fieldtype": "Data",
+   "label": "Registration Number",
+   "description": "Document registration number at the Sub-Registrar Office (SRO)"
+  },
+  {
+   "fieldname": "registration_date",
+   "fieldtype": "Date",
+   "label": "Registration Date",
+   "description": "Date of registration at SRO — may differ from deed execution date"
+  },
+  {
+   "fieldname": "registration_office",
+   "fieldtype": "Data",
+   "label": "Registration Office",
+   "description": "Sub-Registrar Office where the document was registered (e.g., SRO Shamshabad)"
+  },
+  {
+   "fieldname": "cb_registration_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "consideration_amount",
+   "fieldtype": "Currency",
+   "label": "Consideration Amount",
+   "description": "Sale value or declared market value as per the registered document"
+  },
+  {
+   "fieldname": "stamp_duty_paid",
+   "fieldtype": "Currency",
+   "label": "Stamp Duty Paid",
+   "description": "Stamp duty amount — used for revenue verification and valuation cross-check"
+  },
+  {
+   "fieldname": "source_document_idx",
+   "fieldtype": "Int",
+   "label": "Source Document Row #",
+   "description": "Row number in the Land Documents table that this ownership record was derived from (for cross-reference)"
+  },
+  {
+   "fieldname": "sb_remarks",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks",
+   "description": "Legal notes — chain gaps, disputed claims, special conditions, advocate observations"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-07 17:43:00.000000",
+ "modified_by": "Administrator",
+ "module": "LBPAMS",
+ "name": "Ownership Record",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "ASC",
+ "istable": 1,
+ "editable_grid": 1,
+ "description": "Title chain register — each row represents one ownership period, forming the complete chain of title from original allottee to current owner."
+}

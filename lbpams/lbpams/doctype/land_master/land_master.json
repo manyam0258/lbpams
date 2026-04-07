@@ -17,11 +17,12 @@
   "land_nature",
   "current_status",
   "risk_flag",
+  "title_status",
   "sb_location",
-  "village",
-  "mandal",
-  "district",
   "state",
+  "district",
+  "mandal",
+  "village",
   "cb_location_1",
   "pin_code",
   "latitude",
@@ -33,6 +34,8 @@
   "survey_details",
   "compliance_tab",
   "land_compliance",
+  "ownership_tab",
+  "ownership_records",
   "documents_tab",
   "encumbrance_documents",
   "notes_tab",
@@ -124,7 +127,18 @@
    "label": "Risk Flag",
    "read_only": 1,
    "in_list_view": 1,
-   "description": "Auto-set when litigation or missing critical documents are detected"
+   "description": "Auto-set when litigation, missing critical documents, or ownership chain issues are detected"
+  },
+  {
+   "fieldname": "title_status",
+   "fieldtype": "Select",
+   "label": "Title Status",
+   "options": "\nNot Assessed\nClear Title\nGap in Chain\nOverlapping Ownership\nDisputed\nUnder Verification",
+   "default": "Not Assessed",
+   "read_only": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "description": "Auto-computed from the ownership chain — indicates title clarity for development readiness"
   },
   {
    "fieldname": "sb_location",
@@ -132,9 +146,23 @@
    "label": "Location"
   },
   {
-   "fieldname": "village",
+   "fieldname": "state",
    "fieldtype": "Data",
-   "label": "Village"
+   "label": "State",
+   "default": "Telangana",
+   "reqd": 1,
+   "in_standard_filter": 1,
+   "description": "Select state first, then district and mandal will filter accordingly"
+  },
+  {
+   "fieldname": "district",
+   "fieldtype": "Link",
+   "label": "District",
+   "options": "District Master",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "description": "Districts filtered by selected State"
   },
   {
    "fieldname": "mandal",
@@ -143,23 +171,13 @@
    "reqd": 1,
    "options": "Mandal Master",
    "in_list_view": 1,
-   "in_standard_filter": 1
+   "in_standard_filter": 1,
+   "description": "Mandals filtered by selected District"
   },
   {
-   "fieldname": "district",
-   "fieldtype": "Link",
-   "label": "District",
-   "options": "District Master",
-   "read_only": 1,
-   "fetch_from": "mandal.district",
-   "in_standard_filter": 1
-  },
-  {
-   "fieldname": "state",
+   "fieldname": "village",
    "fieldtype": "Data",
-   "label": "State",
-   "default": "Telangana",
-   "read_only": 1
+   "label": "Village"
   },
   {
    "fieldname": "cb_location_1",
@@ -224,15 +242,28 @@
    "options": "Land Compliance"
   },
   {
+   "fieldname": "ownership_tab",
+   "fieldtype": "Tab Break",
+   "label": "Ownership Chain"
+  },
+  {
+   "fieldname": "ownership_records",
+   "fieldtype": "Table",
+   "label": "Ownership & Title Chain",
+   "options": "Ownership Record",
+   "description": "Complete chain of title from root deed to current owner. Each row = one ownership period. Leave 'Ownership To' blank for the current owner."
+  },
+  {
    "fieldname": "documents_tab",
    "fieldtype": "Tab Break",
-   "label": "Documents"
+   "label": "Land Documents"
   },
   {
    "fieldname": "encumbrance_documents",
    "fieldtype": "Table",
-   "label": "Encumbrance & Documents",
-   "options": "Encumbrance Document"
+   "label": "Land Documents",
+   "options": "Encumbrance Document",
+   "description": "All legal, revenue, encumbrance, and compliance documents related to this land parcel"
   },
   {
    "fieldname": "notes_tab",
@@ -261,7 +292,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-02 10:00:00.000000",
+ "modified": "2026-04-07 17:43:00.000000",
  "modified_by": "Administrator",
  "module": "LBPAMS",
  "name": "Land Master",

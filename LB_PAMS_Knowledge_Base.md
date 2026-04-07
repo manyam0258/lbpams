@@ -366,7 +366,7 @@ Every document related to a land parcel is uploaded here. The Doctype supports t
 The OCR module is a background job triggered by a custom button on the `Land Master` form. It is not automatic — a user must explicitly click "Process with OCR" for a specific document row. This design ensures that the legal team retains control over when processing happens and can review results before they are used.
 
 **How it works conceptually:**
-
+*Note: OCR integration - frappe assistant core is using the paddleocr or ollama (OCR configuration from the Assistant core Settings) if we can leverage the same for extracting data from the encumbrance documents, it would be great. Otherwise, we can implement the OCR integration for this module separately.
 1. The user uploads a PDF or image scan to a document row in the `Encumbrance Document` child table.
 2. The user selects one or more rows and clicks "Process with OCR".
 3. The system enqueues a background job (using Frappe's built-in RQ job queue) for each selected row.
@@ -478,6 +478,7 @@ These are check fields that the project manager must complete before the project
 - **Construction Milestones** — detailed in Section 6.3
 
 **Authority Auto-Detection Logic:** A `before_save` server hook reads the `mandal` and `district` from the linked `Land Master` and sets `approval_authority` based on a lookup table maintained in a simple `Authority Mapping` Doctype. This mapping table lists each mandal against its governing authority (GHMC, HMDA, or DTCP) and can be updated by management without code changes. This is preferable to hardcoding mandal lists in Python.
+*Note: the Location should be like State to district, and district to mandal (parent child drilldown hierarchy) so if user selected the State then in the District will only give the districts of that state and similarly for mandal. and also the mandal should be linked to the district and district should be linked to the state. and also the mandal should be linked to the authority and authority should be linked to the district and district should be linked to the state. 
 
 ---
 

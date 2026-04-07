@@ -10,7 +10,7 @@ app_license = "gpl-3.0"
 
 required_apps = ["erpnext"]
 
-# Fixtures — export custom roles and other config
+# Fixtures — export custom roles, workflows, and notifications
 fixtures = [
     {
         "dt": "Role",
@@ -21,6 +21,19 @@ fixtures = [
             "Project Manager",
             "Approval Liaison Officer",
             "Management"
+        ]]]
+    },
+    {
+        "dt": "Workflow",
+        "filters": [["name", "in", [
+            "Land Master Approval"
+        ]]]
+    },
+    {
+        "dt": "Notification",
+        "filters": [["name", "in", [
+            "Land Litigation Flag Alert",
+            "Land Workflow State Change"
         ]]]
     }
 ]
@@ -98,7 +111,7 @@ fixtures = [
 # ------------
 
 # before_install = "lbpams.install.before_install"
-# after_install = "lbpams.install.after_install"
+after_install = "lbpams.install.after_install"
 
 # Uninstallation
 # ------------
@@ -163,23 +176,11 @@ fixtures = [
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-# 	"all": [
-# 		"lbpams.tasks.all"
-# 	],
-# 	"daily": [
-# 		"lbpams.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"lbpams.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"lbpams.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"lbpams.tasks.monthly"
-# 	],
-# }
+scheduler_events = {
+	"weekly": [
+		"lbpams.tasks.weekly_missing_documents_report"
+	],
+}
 
 # Testing
 # -------

@@ -65,6 +65,7 @@ We will implement **Stage 1 through Stage 9** (core functionality) first, then f
 #### [NEW] Encumbrance Document (Child DocType)
 - Parent: Land Master
 - Document tracking with OCR status fields, verification tracking
+*Note: OCR integration - frappe assistant core is using the paddleocr or ollama (OCR configuration from the Assistant core Settings) if we can leverage the same for extracting data from the encumbrance documents, it would be great. Otherwise, we can implement the OCR integration for this module separately.
 
 #### [MODIFY] Land Master Controller
 - Add `validate` hook for:

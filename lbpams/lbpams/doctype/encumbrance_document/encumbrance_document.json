@@ -5,21 +5,40 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "document_category",
   "document_type",
   "document_number",
   "document_date",
+  "cb_doc_1",
   "period_from",
   "period_to",
+  "validity_date",
   "issued_by",
+  "issuing_office",
+  "sb_attachment",
   "file_attachment",
+  "remarks",
+  "sb_verification",
+  "verification_status",
+  "verified_by",
+  "cb_verification_1",
+  "verification_date",
+  "verification_remarks",
   "sb_ocr",
   "ocr_status",
-  "ocr_extracted_data",
-  "cb_ocr_1",
-  "verified_by",
-  "verification_date"
+  "ocr_extracted_data"
  ],
  "fields": [
+  {
+   "fieldname": "document_category",
+   "fieldtype": "Select",
+   "label": "Document Category",
+   "reqd": 1,
+   "in_list_view": 1,
+   "columns": 2,
+   "options": "\nTitle Document\nRevenue Record\nEncumbrance Record\nCompliance Document\nLegal Opinion\nOther",
+   "description": "Classify the document to enable quick filtering and completeness checks"
+  },
   {
    "fieldname": "document_type",
    "fieldtype": "Select",
@@ -27,78 +46,101 @@
    "reqd": 1,
    "in_list_view": 1,
    "columns": 2,
-   "options": "\nEC\nSale Deed\nLink Document\nGift Deed\nPartition Deed\nPahani\nAdangal\n1-B Register\nFMB Sketch\nTippan\nRevenue Sketch\nCourt Order\nPower of Attorney\nOther"
+   "options": "\nSale Deed\nGift Deed\nPartition Deed\nRelease Deed\nWill / Succession Certificate\nCourt Decree\nGovernment Allotment Order\nPower of Attorney\nAgreement of Sale\nPahani (ROR)\nAdangal\n1-B Register\nFMB Sketch\nTippan\nRevenue Sketch\nPattadar Passbook\nVillage Map\nEC\nNon-Encumbrance Certificate\nLand Conversion Order\nNOC\nSurvey / Demarcation Report\nAdvocate Title Certificate\nLink Document\nOther",
+   "description": "Specific document type — filtered by category in client script"
   },
   {
    "fieldname": "document_number",
    "fieldtype": "Data",
    "label": "Document Number",
    "in_list_view": 1,
-   "columns": 1
+   "columns": 1,
+   "description": "Registration number or reference number on the document"
   },
   {
    "fieldname": "document_date",
    "fieldtype": "Date",
    "label": "Document Date",
    "in_list_view": 1,
-   "columns": 1
+   "columns": 1,
+   "description": "Date of issue, execution, or registration"
+  },
+  {
+   "fieldname": "cb_doc_1",
+   "fieldtype": "Column Break"
   },
   {
    "fieldname": "period_from",
    "fieldtype": "Date",
    "label": "Period From",
-   "description": "For EC: start of encumbrance period"
+   "description": "For EC: start of encumbrance search period. For Pahani: crop year start."
   },
   {
    "fieldname": "period_to",
    "fieldtype": "Date",
    "label": "Period To",
-   "description": "For EC: end of encumbrance period"
+   "description": "For EC: end of encumbrance search period. For Pahani: crop year end."
+  },
+  {
+   "fieldname": "validity_date",
+   "fieldtype": "Date",
+   "label": "Validity / Expiry Date",
+   "description": "EC validity (typically 3-6 months from issue). Pahani validity (crop year). NOC expiry."
   },
   {
    "fieldname": "issued_by",
    "fieldtype": "Data",
    "label": "Issued By",
-   "description": "Authority that issued the document"
+   "description": "Authority or person who issued the document (e.g., Sub-Registrar, Tahsildar, Advocate)"
+  },
+  {
+   "fieldname": "issuing_office",
+   "fieldtype": "Data",
+   "label": "Issuing Office",
+   "description": "Specific office (e.g., SRO Shamshabad, Tahsildar Office Medchal)"
+  },
+  {
+   "fieldname": "sb_attachment",
+   "fieldtype": "Section Break",
+   "label": "Attachment & Notes"
   },
   {
    "fieldname": "file_attachment",
    "fieldtype": "Attach",
    "label": "File Attachment",
-   "description": "Upload the scanned document"
+   "description": "Upload the scanned document (PDF, JPG, or PNG)"
   },
   {
-   "fieldname": "sb_ocr",
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks",
+   "description": "Notes about document authenticity, condition, or relevance"
+  },
+  {
+   "fieldname": "sb_verification",
    "fieldtype": "Section Break",
-   "label": "OCR Processing"
+   "label": "Verification"
   },
   {
-   "fieldname": "ocr_status",
+   "fieldname": "verification_status",
    "fieldtype": "Select",
-   "label": "OCR Status",
-   "options": "\nNot Processed\nProcessing\nExtracted\nVerified",
-   "default": "Not Processed",
+   "label": "Verification Status",
+   "options": "\nUnverified\nUnder Review\nVerified\nRejected",
+   "default": "Unverified",
    "in_list_view": 1,
    "columns": 1,
-   "description": "Set to Verified after manual review"
-  },
-  {
-   "fieldname": "ocr_extracted_data",
-   "fieldtype": "Text",
-   "label": "OCR Extracted Data",
-   "read_only": 1,
-   "description": "JSON data extracted by OCR engine"
-  },
-  {
-   "fieldname": "cb_ocr_1",
-   "fieldtype": "Column Break"
+   "description": "Legal team's manual verification status — independent of OCR"
   },
   {
    "fieldname": "verified_by",
    "fieldtype": "Link",
    "label": "Verified By",
    "options": "User",
-   "description": "Set by legal team after review"
+   "description": "Set by legal team after document review and authentication"
+  },
+  {
+   "fieldname": "cb_verification_1",
+   "fieldtype": "Column Break"
   },
   {
    "fieldname": "verification_date",
@@ -106,11 +148,38 @@
    "label": "Verification Date",
    "read_only": 1,
    "description": "Auto-set when Verified By is saved"
+  },
+  {
+   "fieldname": "verification_remarks",
+   "fieldtype": "Small Text",
+   "label": "Verification Remarks",
+   "description": "Legal team's notes on authenticity, discrepancies, or conditions"
+  },
+  {
+   "fieldname": "sb_ocr",
+   "fieldtype": "Section Break",
+   "label": "OCR Processing",
+   "collapsible": 1
+  },
+  {
+   "fieldname": "ocr_status",
+   "fieldtype": "Select",
+   "label": "OCR Status",
+   "options": "\nNot Processed\nProcessing\nExtracted\nVerified",
+   "default": "Not Processed",
+   "description": "OCR extraction status — set to Verified after human review of extracted data"
+  },
+  {
+   "fieldname": "ocr_extracted_data",
+   "fieldtype": "Text",
+   "label": "OCR Extracted Data",
+   "read_only": 1,
+   "description": "JSON data extracted by OCR engine — for legal team review"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-02 10:00:00.000000",
+ "modified": "2026-04-07 17:43:00.000000",
  "modified_by": "Administrator",
  "module": "LBPAMS",
  "name": "Encumbrance Document",
@@ -121,5 +190,5 @@
  "sort_order": "DESC",
  "istable": 1,
  "editable_grid": 1,
- "description": "Document records for land parcels including EC, Sale Deed, Pahani etc."
+ "description": "Land document repository — stores all legal, revenue, encumbrance, and compliance documents with verification tracking and OCR capabilities."
 }
